@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['list_0',['List',['../class_list.html',1,'']]],
-  ['list_2eh_1',['List.h',['../_list_8h.html',1,'']]]
+  ['front_0',['front',['../class_list.html#aa5bf7f14af586315a91bf7055f3cc75a',1,'List::front()'],['../class_list.html#aa5bf7f14af586315a91bf7055f3cc75a',1,'List::Node::front()']]]
 ];

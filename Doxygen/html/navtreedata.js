@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Template_MathsLybrary", "index.html", [
+  [ "My Project", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -41,7 +41,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_list_8h.html"
+"_array_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

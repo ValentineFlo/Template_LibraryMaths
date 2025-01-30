@@ -12,6 +12,7 @@ class Array
     using reverse_iterator = T*; 
     using const_iterator = const T*;
     using const_reverse_iterator = const T*;
+
     template<typename Type, size_t Size>
     friend std::ostream& operator<<(std::ostream& os, const Array<Type, Size>& tab);
 
@@ -54,12 +55,12 @@ public:
         return m_data + size;
     }
 
-    const_iterator begin() const
+    const_iterator cbegin() const
     {
         return m_data;
     }
     
-    const_iterator end() const
+    const_iterator cend() const
     {
         return m_data + size;
     }
@@ -74,16 +75,38 @@ public:
         return m_data;
     }
 
-    const_reverse_iterator rbegin() const
+    const_reverse_iterator crbegin() const
     {
         return m_data + size - 1;
     }
 
-    const_reverse_iterator rend() const
+    const_reverse_iterator crend() const
     {
         return m_data;
     }
 
+    bool empty()
+    {
+        if (begin() == end())
+            return true;
+        else
+            return false;
+    }
+
+    auto at()
+    {
+        if (m_data + size)
+            throw std::out_of_range("Index out of range");
+        return m_data[size];
+    }
+
+    void swap(Array& otherArray)
+    {
+        for (size_t i = 0; i < size; ++i)
+        {
+            std::swap(m_data[i], otherArray.m_data[i]);
+        }
+    }
 
     inner_type& operator[](const size_t& index)
     {
@@ -96,6 +119,8 @@ public:
 private:
     inner_type m_data[size];
 };
+
+
 
 template<typename Type, size_t Size>
 std::ostream& operator<<(std::ostream& os, const Array<Type, Size>& tab)
@@ -117,3 +142,5 @@ OutputIt transform(InputIt begin, InputIt end, OutputIt out, Fn fn)
 
     return out;
 }
+
+

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Template_MathsLybrary: C:/Users/User/Desktop/Template_LibraryMaths/Template_LibraryMaths/ListImpl.h Source File</title>
+<title>My Project: C:/Users/User/Desktop/Template_LibraryMaths/Template_LibraryMaths/ListImpl.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Template_MathsLybrary
+   <div id="projectname">My Project
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -129,17 +129,17 @@ $(function(){initNavTree('_list_impl_8h_source.html',''); initResizable(true); }
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>List&lt;T&gt;::~List()</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    Node* ptr = m_first;</div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_list.html#ac1db6a4449f5543d6be1e03d99c16b6b">   23</a></span>    <span class="keywordflow">while</span> (ptr != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">while</span> (ptr != <span class="keyword">nullptr</span>)</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_list.html#ac1db6a4449f5543d6be1e03d99c16b6b">   24</a></span>    {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        Node* nextPtr = ptr-&gt;next;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keyword">delete</span> ptr;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        ptr = nextPtr;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
-<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_list.html#a7b29856e02532b5bd73888f4607902aa">   30</a></span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_list.html#a7b29856e02532b5bd73888f4607902aa">   31</a></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_list.html#ac1db6a4449f5543d6be1e03d99c16b6b">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_list.html#ac1db6a4449f5543d6be1e03d99c16b6b">List&lt;T&gt;::push_back</a>(<span class="keyword">const</span> T&amp; elem)</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
@@ -153,31 +153,32 @@ $(function(){initNavTree('_list_impl_8h_source.html',''); initResizable(true); }
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        newNode-&gt;previous = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_list.html#a024af4543f71544345351a45850c42d8">   44</a></span>        m_last-&gt;next = newNode;</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_list.html#a024af4543f71544345351a45850c42d8">   43</a></span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        m_last-&gt;next = newNode;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        newNode-&gt;previous = m_last;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        m_last = newNode;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_list.html#ae1a21106dc7f2c47c62763a2f6b04f6b">   50</a></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_list.html#a7b29856e02532b5bd73888f4607902aa">   51</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_list.html#a7b29856e02532b5bd73888f4607902aa">List&lt;T&gt;::push_front</a>(<span class="keyword">const</span> T&amp; elem)</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_struct" href="struct_list_1_1_node.html">Node</a>* newNode = <span class="keyword">new</span> <a class="code hl_struct" href="struct_list_1_1_node.html">Node</a>{ elem };</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    newNode-&gt;previous = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (m_first == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_list.html#ae4132dbe1058e4d6a536dc0b8ea1ad1d">   57</a></span>        m_last = newNode;</div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_list.html#ae4132dbe1058e4d6a536dc0b8ea1ad1d">   56</a></span>    {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        m_last = newNode;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        m_first = newNode;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        newNode-&gt;next = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_list.html#aa5bf7f14af586315a91bf7055f3cc75a">   63</a></span>        m_first-&gt;previous = newNode;</div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_list.html#aa5bf7f14af586315a91bf7055f3cc75a">   62</a></span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        m_first-&gt;previous = newNode;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        newNode-&gt;next = m_first;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        m_first = newNode;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
@@ -255,6 +256,7 @@ $(function(){initNavTree('_list_impl_8h_source.html',''); initResizable(true); }
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="class_list.html#ae1a21106dc7f2c47c62763a2f6b04f6b">size</a>;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
+</div>
 </div>
 </div>
 </div>

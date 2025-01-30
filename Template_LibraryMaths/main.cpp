@@ -36,4 +36,16 @@ int main()
     //{
     //    std::cout << *it << " ";
     //}
+    //std::cout << std::endl;
+    //
+    //arr.clear();
+    //
+    //for (const auto ptr : arr)
+    //{
+    //    std::cout << ptr << " "; 
+    //}
+    //std::cout << std::endl;
+
+    return 0;
+
 }

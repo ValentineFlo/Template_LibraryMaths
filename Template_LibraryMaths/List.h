@@ -2,6 +2,7 @@
 /**
  * @file list.h
  * @brief list class definition
+ * ***List***
  */
 
 #ifndef MY_LIST_H
@@ -59,7 +60,6 @@ public:
      * @return the value of the first pointer
      */
     const T& front() const;
-
 
     
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['front_0',['front',['../class_list.html#aa5bf7f14af586315a91bf7055f3cc75a',1,'List::front()'],['../class_list.html#aa5bf7f14af586315a91bf7055f3cc75a',1,'List::Node::front()']]]
+  ['back_0',['back',['../class_list.html#ae4132dbe1058e4d6a536dc0b8ea1ad1d',1,'List::back()'],['../class_list.html#ae4132dbe1058e4d6a536dc0b8ea1ad1d',1,'List::Node::back()']]]
 ];
