@@ -100,7 +100,7 @@ auto Array<T, N>::at()
 }
 
 template<typename T, size_t N>
-Array<T, N>::void swap(Array& otherArray)
+void Array<T, N> Array<T, N>::swap(Array& otherArray)
 {
     for (size_t i = 0; i < size; ++i)
     {
