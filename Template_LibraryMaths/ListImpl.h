@@ -1,5 +1,5 @@
 #ifndef MY_LIST_H
-#error Do not include this header directly. Please inlude List.h
+#error Do not include this header directly. Please inlude Array.h
 #endif
 
 template<typename T>

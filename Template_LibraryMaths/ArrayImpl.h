@@ -1,8 +1,9 @@
-#pragma once
+#ifndef MY_ARRAY_H 
+#error Do not include this header directly. Please inlude Array.h
+#endif
 
 #include <iostream>
 #include <string>
-#include "Array.h" 
 
 template<typename T, size_t N>
 Array<T,N>::Array()
@@ -23,9 +24,6 @@ Array<T, N>::Array(const Array& tab)
 {
     std::copy(tab.begin(), tab.end(), m_data);
 }
-
-template<typename T, size_t N>
-Array<T, N>::~Array() = default;
 
 template<typename T, size_t N>
 typename Array<T, N>& Array<T, N>::operator= (const Array& tab) 
@@ -59,13 +57,13 @@ typename Array<T, N>::const_iterator Array<T,N>::cend() const
 }
 
 template<typename T, size_t N>
-Array<T, N>::reverse_iterator rbegin()
+typename Array<T, N>::reverse_iterator Array<T, N>::rbegin()
 {
     return m_data + size - 1;
 }
 
 template<typename T, size_t N>
-Array<T, N>::reverse_iterator rend()
+typename Array<T, N>::reverse_iterator Array<T, N>::rend()
 {
     return m_data;
 }
@@ -99,8 +97,10 @@ auto Array<T, N>::at()
     return m_data[size];
 }
 
+///Ameliorer le std::swap
+
 template<typename T, size_t N>
-void Array<T, N> Array<T, N>::swap(Array& otherArray)
+void Array<T, N>::swap(Array& otherArray)
 {
     for (size_t i = 0; i < size; ++i)
     {
@@ -114,13 +114,7 @@ typename Array<T, N>::inner_type& Array<T, N>::operator[](const size_t& index)
     if (index >= size)
         throw std::runtime_error("out of range");
     return m_data[index];
-} 
-
-template<typename T, size_t N>
-Array<T, N>::
-
-template<typename T, size_t N>
-Array<T, N>::
+}
 
 template<typename Type, size_t Size>
 std::ostream& operator<<(std::ostream& os, const Array<Type, Size>& tab)
@@ -142,15 +136,5 @@ OutputIt transform(InputIt begin, InputIt end, OutputIt out, Fn fn)
 
     return out;
 }
-
-
-
-    /*
-
-
-
-
-
-*/
 
 

@@ -1,5 +1,6 @@
 ﻿#include "List.h"
 #include "Array.h"
+#include "Algorithms.h"
 
 #include <iostream>
 

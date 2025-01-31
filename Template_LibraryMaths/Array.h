@@ -50,6 +50,6 @@ std::ostream& operator<<(std::ostream& os, const Array<Type, Size>& tab);
 template<typename InputIt, typename OutputIt, typename Fn>
 OutputIt transform(InputIt begin, InputIt end, OutputIt out, Fn fn);
 
-#include "ArrayImpl.h"
 #endif
 
+#include "ArrayImpl.h"
