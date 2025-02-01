@@ -39,6 +39,7 @@ public:
     auto at();
     void swap(Array& otherArray);
     inner_type& operator[](const size_t& index);
+    const inner_type& operator[](const size_t& index) const;
 
 private:
     inner_type m_data[size];

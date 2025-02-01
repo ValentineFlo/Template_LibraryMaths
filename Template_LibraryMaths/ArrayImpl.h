@@ -116,6 +116,14 @@ typename Array<T, N>::inner_type& Array<T, N>::operator[](const size_t& index)
     return m_data[index];
 }
 
+template<typename T, size_t N>
+const typename Array<T, N>::inner_type& Array<T, N>::operator[](const size_t& index) const
+{
+    if (index >= size)
+        throw std::runtime_error("out of range");
+    return m_data[index];
+}
+
 template<typename Type, size_t Size>
 std::ostream& operator<<(std::ostream& os, const Array<Type, Size>& tab)
 {

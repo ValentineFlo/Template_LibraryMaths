@@ -1,6 +1,7 @@
 ﻿#include "List.h"
 #include "Array.h"
 #include "Algorithms.h"
+#include "vector"
 
 #include <iostream>
 
@@ -46,6 +47,9 @@ int main()
     //    std::cout << ptr << " "; 
     //}
     //std::cout << std::endl;
+
+    /// test tri
+    std::vector<int> vec = { 4,2,3 };
 
     return 0;
 

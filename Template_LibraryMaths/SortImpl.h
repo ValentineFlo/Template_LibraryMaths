@@ -1,21 +1,29 @@
-#ifndef MY_SORT_H
+#ifndef MY_ALGO_H
 #error Do not include this header directly. Please inlude Sort.h
 #endif
 
-//template<typename T>
-//typename Algorithms<T>& Algorithms<T>::sort() 
-//{
-//    if 
-//}
+
+template<typename T, size_t N>
+void Algorithms<T, N>::sort(T Tab[N])
+{
+    if (N <= 10)
+    {
+        insertionSort<T, N>(Tab);
+    }
+    else
+        sortdiviseMerge(Tab, 0, N - 1);
+
+    sortSucess(Tab);
+}
 
 
 template <typename T, size_t N>
-void trisInsertion(T* Tab)
+void insertionSort(T* Tab)
 {
     for (int i = 0; i < N; ++i) 
     {
        T clef = Tab[i];
-        T j = i - 1; 
+        int j = i - 1; 
 
         while (j >= 0 && clef < Tab[j])
         {
@@ -28,12 +36,12 @@ void trisInsertion(T* Tab)
 
 
 template <typename T, size_t N>
-void trisMerge(T Tab[N], T DebutG, T FinG, T DebutD, T FinD)
+void Algorithms<T, N>::merge(T Tab[N], size_t DebutG, size_t FinG, size_t DebutD, size_t FinD)
 {
-    T tmpCurrentGIdx = DebutG;
-    T tmpCurrentDIdx = DebutD;
-    T TabtmpSize = (FinG - DebutG + 1) + (FinD - DebutD + 1);
-    T Ecrire = 0;
+    size_t tmpCurrentGIdx = DebutG;
+    size_t tmpCurrentDIdx = DebutD;
+    size_t TabtmpSize = (FinG - DebutG + 1) + (FinD - DebutD + 1);
+    size_t write = 0;
     T* tmpTab;
     tmpTab = new T[TabtmpSize];
 
@@ -41,30 +49,30 @@ void trisMerge(T Tab[N], T DebutG, T FinG, T DebutD, T FinD)
     {
         if (tmpCurrentGIdx == FinG + 1)
         {
-            tmpTab[Ecrire] = Tab[tmpCurrentDIdx];
-            ++Ecrire;
+            tmpTab[write] = Tab[tmpCurrentDIdx];
+            ++write;
             ++tmpCurrentDIdx;
         }
         else if (tmpCurrentDIdx == FinD + 1)
         {
-            tmpTab[Ecrire] = Tab[tmpCurrentGIdx];
-            ++Ecrire;
+            tmpTab[write] = Tab[tmpCurrentGIdx];
+            ++write;
             ++tmpCurrentGIdx;
         }
 
         else
             if (Tab[tmpCurrentGIdx] <= Tab[tmpCurrentDIdx])
             {
-                tmpTab[Ecrire] = Tab[tmpCurrentGIdx];
+                tmpTab[write] = Tab[tmpCurrentGIdx];
                 ++tmpCurrentGIdx;
-                ++Ecrire;
+                ++write;
             }
 
             else
             {
-                tmpTab[Ecrire] = Tab[tmpCurrentDIdx];
+                tmpTab[write] = Tab[tmpCurrentDIdx];
                 ++tmpCurrentDIdx;
-                ++Ecrire;
+                ++write;
             }
     }
 
@@ -79,15 +87,28 @@ void trisMerge(T Tab[N], T DebutG, T FinG, T DebutD, T FinD)
 }
 
 template <typename T, size_t N>
-void Divise(T Tab[N], T DebutIdx, T FinIdx)
+void Algorithms<T, N>::sortdiviseMerge(T Tab[N], size_t DebutIdx, size_t FinIdx)
 {
     if (DebutIdx == FinIdx)
         return;
 
-    T milieux;
+    int milieux;
     milieux = (DebutIdx + FinIdx) / 2;
 
-    Divise(Tab, DebutIdx, milieux);
-    Divise(Tab, milieux + 1, FinIdx);
-    trisMerge(Tab, DebutIdx, milieux, milieux + 1, FinIdx);
+    sortdiviseMerge(Tab, DebutIdx, milieux);
+    sortdiviseMerge(Tab, milieux + 1, FinIdx);
+    merge(Tab, DebutIdx, milieux, milieux + 1, FinIdx);
+}
+
+template <typename T, size_t N>
+bool Algorithms<T, N>:: sortSucess(T Tab[N]) const
+{
+    for (size_t i = 1; i < N; ++i)
+    {
+        if (Tab[i] < Tab[i - 1])
+        {
+            throw std::runtime_error("Le tri a échoué : le tableau n'est pas trié correctement");
+        }
+    }
+    return true;
 }
