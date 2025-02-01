@@ -1,7 +1,7 @@
 ﻿#include "List.h"
 #include "Array.h"
 #include "Algorithms.h"
-#include "vector"
+#include "Vector.h"
 
 #include <iostream>
 
@@ -48,8 +48,30 @@ int main()
     //}
     //std::cout << std::endl;
 
-    /// test tri
-    std::vector<int> vec = { 4,2,3 };
+        Vector<int> vec;
+        vec.push_back(1);
+        vec.push_back(2);
+        vec.push_back(3);
+
+        std::cout << "Vecteur après push_back : " << vec << std::endl; // (1 2 3)
+
+        vec.pop_back();
+        std::cout << "Après pop_back() : " << vec << std::endl; // (1 2)
+
+        //std::cout << "Élément à l'index 1 : " << vec[1] << std::endl; // 2
+
+
+    /// test tri**********
+    //std::vector<int> vec = { 4,2,3 };
+    //    VectorInt v;
+    //    v.reserve(2);
+    //    v.pushBack(0);
+    //    v.pushBack(1);
+
+    //    v.pushBack(2);
+    //    std::cout << v[0] << std::endl;
+
+    //    std::cout << v << std::endl;
 
     return 0;
 
