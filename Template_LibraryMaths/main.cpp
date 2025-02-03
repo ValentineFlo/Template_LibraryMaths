@@ -49,29 +49,22 @@ int main()
     //std::cout << std::endl;
 
         Vector<int> vec;
-        vec.push_back(1);
-        vec.push_back(2);
+        vec.push_back(3);
+        vec.push_back(5);
         vec.push_back(3);
 
-        std::cout << "Vecteur après push_back : " << vec << std::endl; // (1 2 3)
+        std::cout << "Vecteur apres push_back : " << vec << std::endl; // (1 2 3)
+        //vec.pop_back();
+        std::cout << "Apres pop_back : " << vec << " first : " << vec.front() << " last : " << vec.back() << " element : " << vec.at(2) << std::endl; // (1 2)
 
-        vec.pop_back();
-        std::cout << "Après pop_back() : " << vec << std::endl; // (1 2)
 
         //std::cout << "Élément à l'index 1 : " << vec[1] << std::endl; // 2
 
 
     /// test tri**********
-    //std::vector<int> vec = { 4,2,3 };
-    //    VectorInt v;
-    //    v.reserve(2);
-    //    v.pushBack(0);
-    //    v.pushBack(1);
+        /*std::cout << v[0] << std::endl;
 
-    //    v.pushBack(2);
-    //    std::cout << v[0] << std::endl;
-
-    //    std::cout << v << std::endl;
+        std::cout << v << std::endl;*/
 
     return 0;
 

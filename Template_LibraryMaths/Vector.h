@@ -15,11 +15,11 @@ public:
     using const_reverse_iterator = const T*;
 
     Vector();
+    Vector(size_t initialCapacity);
     ~Vector();
-    Vector& operator= (const Vector& tab);
-    size_t size() const;
-    void reserve();
 
+    T& front();
+    T& back() ;
     const T& front() const;
     const T& back() const;
     void push_back(const T& value);
@@ -34,21 +34,25 @@ public:
     const_reverse_iterator crbegin() const;
     const_reverse_iterator crend() const;
 
+    Vector& operator= (const Vector& tab); 
     T& operator[](size_t i);
     const T& operator[](size_t i) const;
 
-    T& at();
-    const T& at() const;
+    T& at(size_t elem);
+    const T& at(size_t elem) const;
     bool empty()const;
     void clear();
     void resize(size_t newSize, T defaultValue);
     void erase(size_t index);
 
 
+    size_t getSize() const { return m_size; }
+
 public:
-    T* pBegin;
-    T* pEnd;
-    T* pCapacity;
+    T* m_data;
+    size_t m_size;
+    size_t m_capacity;
+
 };
 
 template<typename Type, size_t Size>
