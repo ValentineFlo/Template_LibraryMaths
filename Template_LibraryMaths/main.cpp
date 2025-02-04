@@ -1,9 +1,7 @@
 ﻿#include "List.h"
 #include "Array.h"
 #include "Algorithms.h"
-#include "Vector.h"
-
-#include <iostream>
+#include "Vector2.h"
 
 int main()
 {
@@ -54,11 +52,19 @@ int main()
         vec.push_back(3);
 
         std::cout << "Vecteur apres push_back : " << vec << std::endl; // (1 2 3)
-        //vec.pop_back();
-        std::cout << "Apres pop_back : " << vec << " first : " << vec.front() << " last : " << vec.back() << " element : " << vec.at(2) << std::endl; // (1 2)
+        vec.pop_back();
+        std::cout << "Apres pop_back : " << vec << " first : " << vec.front() << " last : " << vec.back() << " element : "<< vec.at(2) << std::endl; // (1 2)
 
+        Vector<float> v;
+        v.reserve(2);
+        v.push_back(8.02);
+        v.push_back(1.08);
 
-        //std::cout << "Élément à l'index 1 : " << vec[1] << std::endl; // 2
+        /// test iterateur
+        /*for (auto it = v.begin(); it != v.end(); ++it)
+        {
+            std::cout << *it << " ";
+        }*/
 
 
     /// test tri**********
@@ -69,3 +75,6 @@ int main()
     return 0;
 
 }
+
+
+// je t'aime vava

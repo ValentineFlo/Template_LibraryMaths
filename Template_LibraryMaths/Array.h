@@ -14,8 +14,8 @@ public:
     using const_iterator = const T*;
     using const_reverse_iterator = const T*;
 
-    template<typename Type, size_t Size>
-    friend std::ostream& operator<<(std::ostream& os, const Array<Type, Size>& tab);
+    template<typename Type, size_t size>
+    friend std::ostream& operator<<(std::ostream& os, const Array<Type, size>& tab);
     using inner_type = T;
     static constexpr size_t size = N;
 
