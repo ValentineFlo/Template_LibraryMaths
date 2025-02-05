@@ -1,5 +1,5 @@
 #ifndef MY_ALGO_H
-#error Do not include this header directly. Please inlude Sort.h
+#error Do not include this header directly. Please inlude Algorithms.h
 #endif
 
 
@@ -8,7 +8,7 @@ void Algorithms<T, N>::sort(T Tab[N])
 {
     if (N <= 10)
     {
-        insertionSort<T, N>(Tab);
+        insertionSort(Tab);
     }
     else
         sortdiviseMerge(Tab, 0, N - 1);
@@ -18,7 +18,7 @@ void Algorithms<T, N>::sort(T Tab[N])
 
 
 template <typename T, size_t N>
-void insertionSort(T* Tab)
+void Algorithms<T, N>::insertionSort(T* Tab)
 {
     for (int i = 0; i < N; ++i) 
     {
@@ -96,8 +96,8 @@ void Algorithms<T, N>::sortdiviseMerge(T Tab[N], size_t DebutIdx, size_t FinIdx)
     milieux = (DebutIdx + FinIdx) / 2;
 
     sortdiviseMerge(Tab, DebutIdx, milieux);
-    sortdiviseMerge(Tab, milieux + 1, FinIdx);
-    merge(Tab, DebutIdx, milieux, milieux + 1, FinIdx);
+    sortdiviseMerge(Tab, static_cast<size_t>(milieux) + 1, FinIdx);
+    merge(Tab, DebutIdx, milieux, static_cast<size_t>(milieux) + 1, FinIdx);
 }
 
 template <typename T, size_t N>
@@ -107,7 +107,7 @@ bool Algorithms<T, N>:: sortSucess(T Tab[N]) const
     {
         if (Tab[i] < Tab[i - 1])
         {
-            throw std::runtime_error("Le tri a échoué : le tableau n'est pas trié correctement");
+            throw std::runtime_error("uncessfull sort");
         }
     }
     return true;

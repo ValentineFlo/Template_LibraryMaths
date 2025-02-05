@@ -56,43 +56,25 @@ typename Array<T, N>::const_iterator Array<T,N>::cend() const
     return m_data + size;
 }
 
-template<typename T, size_t N>
-typename Array<T, N>::reverse_iterator Array<T, N>::rbegin()
-{
-    return m_data + size - 1;
-}
-
-template<typename T, size_t N>
-typename Array<T, N>::reverse_iterator Array<T, N>::rend()
-{
-    return m_data;
-}
-
-template<typename T, size_t N>
-typename Array<T, N>::const_reverse_iterator Array<T,N>::crbegin() const
-{
-    return m_data + size - 1;
-}
-
-template<typename T, size_t N>
-typename Array<T, N>::const_reverse_iterator Array<T,N>::crend() const
-{
-    return m_data;
-}
 
 template<typename T, size_t N>
 bool Array<T, N>::empty()
 {
-    if (begin() == end())
-        return true;
-    else
-        return false;
+    return N == 0;
 }
 
 template<typename T, size_t N>
-auto Array<T, N>::at()
+T& Array<T, N>::at(size_t index)
 {
-    if (m_data + size)
+    if (index >= size)
+        throw std::out_of_range("Index out of range");
+    return m_data[size];
+}
+
+template<typename T, size_t N>
+T& Array<T, N>::at(size_t index) const 
+{
+    if (index >= size)
         throw std::out_of_range("Index out of range");
     return m_data[size];
 }

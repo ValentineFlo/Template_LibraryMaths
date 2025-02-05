@@ -1,3 +1,6 @@
+#ifndef VECTOR_IMPL_H
+#define VECTOR_IMPL_H
+
 #ifndef MY_VECTOR_H
 #error Do not include this header directly. Please inlude Vector.h
 #endif
@@ -55,6 +58,12 @@ bool Vector<T>::empty() const
 template<typename T>
 T& Vector<T>::front()
 {
+    if (empty())
+    {
+        std::cerr << "Error: accessing front() on an empty vector. Returns a default value : " ;
+        static T default_value{};
+        return default_value;
+    }
     return pBegin[0]; 
 }
 
@@ -62,13 +71,23 @@ template<typename T>
 T& Vector<T>::back()
 {
     if (empty())
-        throw std::out_of_range("Vector is empty");
+    {
+        std::cerr << "Error: accessing back() on an empty vector. Returns a default value : ";
+        static T default_value{};
+        return default_value;
+    }
     return *(pEnd - 1);
 }
 
 template<typename T>
 const T& Vector<T>::front() const
 {
+    if (empty())
+    {
+        std::cerr << "Error: accessing front() on an empty vector. Returns a default value : ";
+        static T default_value{};
+        return default_value;
+    }
     return pBegin[0];
 }
 
@@ -76,7 +95,11 @@ template<typename T>
 const T& Vector<T>::back() const
 {
     if (empty())
-        throw std::out_of_range("Vector is empty");
+    {
+        std::cerr << "Error: accessing back() on an empty vector. Returns a default value : ";
+        static T default_value{};
+        return default_value;
+    }
     return *(pEnd - 1);
 }
 
@@ -87,7 +110,7 @@ void Vector<T>::push_back(const T& value)
     {
         if (pEnd == pCapacity)
         {
-            size_t newCapacity = (capacitySize() == 0) ? 1 : capacitySize() * 2;
+            size_t newCapacity = (capacitySize() == 0) ? 1 : static_cast<size_t>(capacitySize()) * 2;
             reserve(newCapacity);
         }
 
@@ -110,52 +133,27 @@ void Vector<T>::pop_back()
 template<typename T>
 typename Vector<T>::iterator Vector<T>::begin()
 {
-    return pBegin;
+    return iterator(pBegin);
 }
 
 template<typename T>
 typename Vector<T>::iterator Vector<T>::end()
 {
-    return pEnd;
+    return iterator(pEnd);
 }
 
 
 template<typename T>
 typename Vector<T>::const_iterator Vector<T>::cbegin() const
 {
-    return pBegin;
+    return const_iterator(pBegin);
 }
 
 template<typename T>
 typename Vector<T>::const_iterator Vector<T>::cend() const
 {
-    return pEnd;
+    return const_iterator(pEnd);
 }
-
-template<typename T>
-typename Vector<T>::reverse_iterator Vector<T>::rbegin()
-{
-    return pEnd - 1;
-}
-
-template<typename T>
-typename Vector<T>::reverse_iterator Vector<T>::rend()
-{
-    return pBegin - 1;
-}
-
-template<typename T>
-typename Vector<T>::const_reverse_iterator Vector<T>::crbegin() const
-{
-    return pEnd - 1;
-}
-
-template<typename T>
-typename Vector<T>::const_reverse_iterator Vector<T>::crend() const
-{
-    return pBegin - 1;
-}
-
 
 template<typename T>
 T& Vector<T>::operator[](int i)
@@ -175,7 +173,7 @@ std::ostream& operator<<(std::ostream& os, const Vector<T>& tab)
     size_t size = tab.size();
     if (size == 0)
     {
-        os << "()";
+        os << "";
         return os;
     }
     os << "(";
@@ -191,51 +189,57 @@ template<typename T>
 T& Vector<T>::at(size_t elem)
 {
     if (elem >= size())
+    {
+        std::cerr << "Error: accessing at() on an empty vector. Returns a default value : ";
+        static T default_value{};
+        return default_value;
+    }
+    return pBegin[elem];
+}
+
+template<typename T>
+const T& Vector<T>::at(size_t elem) const 
+{
+    if (elem >= size())
         throw std::out_of_range("Index out of range");
     return pBegin[elem];
 }
 
+template<typename T>
+void Vector<T>::clear()
+{
 
-//template<typename T>
-//void Vector<T>::clear()
-//{
-//    m_size = 0;
-//}
-//
-//template<typename T>
-//void Vector<T>::erase(size_t index)
-//{
-//    if (index >= m_size) 
-//    {
-//        throw std::out_of_range("Index out of range");
-//    }
-//    for (size_t i = index; i < m_size - 1; ++i) {
-//        m_data[i] = m_data[i + 1];
-//    }
-//
-//    --m_size;
-//}
-//
-//
-//
+    delete[] pBegin;
+    pBegin = nullptr;
+    pEnd = nullptr;
+    pCapacity = nullptr;
+}
 
 
-//template<typename T>
-//bool Vector<T>::empty() const
-//{
-//    if (m_data[0] == m_data[m_size])
-//    return true;
-//    else
-//        return false;
-//}
-//
+///Supprime un element 
+template<typename T>
+void Vector<T>::erase(size_t index)
+{
+    if (index >= size()) 
+    {
+        throw std::out_of_range("Index out of range");
+    }
+    for (size_t i = index; i < size() - 1; ++i) 
+    {
+        pBegin[i] = pBegin[i + 1];
+    }
 
-//
-//template<typename T>
-//const T& Vector<T>::at(size_t elem) const
-//{
-//    if (elem >= m_size || m_data == nullptr)
-//        throw std::out_of_range("Index out of range");
-//    else
-//        return m_data[elem];
-//}
+    --pEnd;
+}
+
+
+template<typename T>
+void Vector<T>::sort()
+{
+    if (empty()) return; 
+    Algorithms<T, size()> algo; 
+    algo.sort(pBegin);
+}
+
+
+#endif

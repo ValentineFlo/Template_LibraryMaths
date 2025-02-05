@@ -2,17 +2,15 @@
 #define MY_VECTOR_H
 
 #include <iostream>
+#include "Iterator.h"
 
 template<typename T>
 class Vector
 {
 public:
 
-
-    using iterator = T*;
-    using reverse_iterator = T*;
-    using const_iterator = const T*;
-    using const_reverse_iterator = const T*;
+    using iterator = Iterator<T>;
+    using const_iterator = Iterator<const T>;
 
     Vector();
     ~Vector();
@@ -34,10 +32,6 @@ public:
     iterator end();
     const_iterator cbegin() const;
     const_iterator cend() const;
-    reverse_iterator rbegin();
-    reverse_iterator rend();
-    const_reverse_iterator crbegin() const;
-    const_reverse_iterator crend() const;
 
     T& operator[](int i);
     const T& operator[](int i) const;
@@ -49,6 +43,7 @@ public:
     void resize(size_t newSize, T defaultValue);
     void erase(size_t index);
 
+    void sort();
 
 public:
     T* pBegin;
@@ -59,6 +54,7 @@ public:
 
 template<typename Type, size_t Size>
 std::ostream& operator<<(std::ostream& os, const Vector<Type>& tab);
+
 
 
 
