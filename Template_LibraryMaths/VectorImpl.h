@@ -1,9 +1,14 @@
 #ifndef VECTOR_IMPL_H
 #define VECTOR_IMPL_H
 
+#include "Vector.h"
+#include "SortImpl.h"
+
 #ifndef MY_VECTOR_H
 #error Do not include this header directly. Please inlude Vector.h
 #endif
+
+
 
 template<typename T>
 Vector<T>::Vector() 
@@ -168,24 +173,6 @@ const T& Vector<T>::operator[](int i) const
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const Vector<T>& tab) 
-{
-    size_t size = tab.size();
-    if (size == 0)
-    {
-        os << "";
-        return os;
-    }
-    os << "(";
-    for (size_t i = 0; i < size - 1; ++i) 
-    {
-        os << tab.pBegin[i] << " ";
-    }
-    os << tab.pBegin[size - 1] << ")"; 
-    return os;
-}
-
-template<typename T>
 T& Vector<T>::at(size_t elem)
 {
     if (elem >= size())
@@ -232,14 +219,10 @@ void Vector<T>::erase(size_t index)
     --pEnd;
 }
 
-
 template<typename T>
 void Vector<T>::sort()
 {
-    if (empty()) return; 
-    Algorithms<T, size()> algo; 
-    algo.sort(pBegin);
+    sortimpl(pBegin, size()); 
 }
-
 
 #endif

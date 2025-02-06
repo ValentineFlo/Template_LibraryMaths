@@ -1,42 +1,31 @@
 #ifndef MY_ALGO_H
+#define MY_ALGO_H
+
+#ifndef MY_ALGO_H
 #error Do not include this header directly. Please inlude Algorithms.h
 #endif
 
 
-template<typename T, size_t N>
-void Algorithms<T, N>::sort(T Tab[N])
+template <typename T>
+void insertionSort(T* begin, size_t size)
 {
-    if (N <= 10)
+    for (int i = 0; i < size; ++i) 
     {
-        insertionSort(Tab);
-    }
-    else
-        sortdiviseMerge(Tab, 0, N - 1);
-
-    sortSucess(Tab);
-}
-
-
-template <typename T, size_t N>
-void Algorithms<T, N>::insertionSort(T* Tab)
-{
-    for (int i = 0; i < N; ++i) 
-    {
-       T clef = Tab[i];
+       T key = begin[i];
         int j = i - 1; 
 
-        while (j >= 0 && clef < Tab[j])
+        while (j >= 0 && key < begin[j])
         {
-            Tab[j + 1] = Tab[j];
+            begin[j + 1] = begin[j];
             --j;
         }
-        Tab[j + 1] = clef;
+        begin[j + 1] = key;
     }
 }
 
 
-template <typename T, size_t N>
-void Algorithms<T, N>::merge(T Tab[N], size_t DebutG, size_t FinG, size_t DebutD, size_t FinD)
+template <typename T>
+void merge(T* begin, size_t DebutG, size_t FinG, size_t DebutD, size_t FinD)
 {
     size_t tmpCurrentGIdx = DebutG;
     size_t tmpCurrentDIdx = DebutD;
@@ -49,28 +38,28 @@ void Algorithms<T, N>::merge(T Tab[N], size_t DebutG, size_t FinG, size_t DebutD
     {
         if (tmpCurrentGIdx == FinG + 1)
         {
-            tmpTab[write] = Tab[tmpCurrentDIdx];
+            tmpTab[write] = begin[tmpCurrentDIdx];
             ++write;
             ++tmpCurrentDIdx;
         }
         else if (tmpCurrentDIdx == FinD + 1)
         {
-            tmpTab[write] = Tab[tmpCurrentGIdx];
+            tmpTab[write] = begin[tmpCurrentGIdx];
             ++write;
             ++tmpCurrentGIdx;
         }
 
         else
-            if (Tab[tmpCurrentGIdx] <= Tab[tmpCurrentDIdx])
+            if (begin[tmpCurrentGIdx] <= begin[tmpCurrentDIdx])
             {
-                tmpTab[write] = Tab[tmpCurrentGIdx];
+                tmpTab[write] = begin[tmpCurrentGIdx];
                 ++tmpCurrentGIdx;
                 ++write;
             }
 
             else
             {
-                tmpTab[write] = Tab[tmpCurrentDIdx];
+                tmpTab[write] = begin[tmpCurrentDIdx];
                 ++tmpCurrentDIdx;
                 ++write;
             }
@@ -78,7 +67,7 @@ void Algorithms<T, N>::merge(T Tab[N], size_t DebutG, size_t FinG, size_t DebutD
 
     for (int i = 0; i < TabtmpSize; ++i)
     {
-        Tab[i + DebutG] = tmpTab[i];
+        begin[i + DebutG] = tmpTab[i];
     }
 
 
@@ -86,8 +75,8 @@ void Algorithms<T, N>::merge(T Tab[N], size_t DebutG, size_t FinG, size_t DebutD
     tmpTab = nullptr;
 }
 
-template <typename T, size_t N>
-void Algorithms<T, N>::sortdiviseMerge(T Tab[N], size_t DebutIdx, size_t FinIdx)
+template <typename T>
+void sortdiviseMerge(T* begin, size_t DebutIdx, size_t FinIdx)
 {
     if (DebutIdx == FinIdx)
         return;
@@ -95,20 +84,36 @@ void Algorithms<T, N>::sortdiviseMerge(T Tab[N], size_t DebutIdx, size_t FinIdx)
     int milieux;
     milieux = (DebutIdx + FinIdx) / 2;
 
-    sortdiviseMerge(Tab, DebutIdx, milieux);
-    sortdiviseMerge(Tab, static_cast<size_t>(milieux) + 1, FinIdx);
-    merge(Tab, DebutIdx, milieux, static_cast<size_t>(milieux) + 1, FinIdx);
+    sortdiviseMerge(begin, DebutIdx, milieux);
+    sortdiviseMerge(begin, static_cast<size_t>(milieux) + 1, FinIdx);
+    merge(begin, DebutIdx, milieux, static_cast<size_t>(milieux) + 1, FinIdx);
 }
 
-template <typename T, size_t N>
-bool Algorithms<T, N>:: sortSucess(T Tab[N]) const
+template <typename T>
+bool sortSucess(T* begin, size_t size)
 {
-    for (size_t i = 1; i < N; ++i)
+    for (size_t i = 1; i < size; ++i)
     {
-        if (Tab[i] < Tab[i - 1])
+        if (begin[i] < begin[i - 1])
         {
             throw std::runtime_error("uncessfull sort");
         }
     }
     return true;
 }
+
+
+template<typename T>
+void sortimpl(T* begin, size_t size)
+{
+    if (size <= 10)
+    {
+        insertionSort(begin, size);
+    }
+    else
+        sortdiviseMerge(begin, 0, size - 1); 
+
+    sortSucess(begin, size); 
+}
+
+#endif

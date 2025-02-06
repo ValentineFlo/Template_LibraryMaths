@@ -1,7 +1,9 @@
 ﻿#include "List.h"
 #include "Array.h"
-#include "Algorithms.h"
 #include "Vector.h"
+
+
+
 
 int main()
 {
@@ -61,10 +63,11 @@ int main()
         std::cout << "Vecteur avant modif : " << vec << std::endl; // (1 2 3)
         std::cout << "apres modif : " << vec << "\n" << " first : " << vec.front()<< "\n" << " last : " << vec.back() << "\n" << " element : " << vec.at(0) << "\n" << std::endl; // (1 2)
 
-        Vector<float> v;
+        Vector<int> v;
         v.reserve(3);
-        v.push_back(8.02);
-        v.push_back(1.08);
+        v.push_back(8.02f);
+        v.push_back(1.08f);
+        v.push_back(4.05f);
 
     // Test iterateur
           //Iterateur array
@@ -81,9 +84,10 @@ int main()
 
 
     /// test tri**********
+
+
         
         std::cout  << "Avant : " << v << std::endl;
-        //v.sort();
         v.sort();
         std::cout << "Apres : " << v << std::endl;
 

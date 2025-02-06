@@ -52,10 +52,26 @@ public:
 
 };
 
-template<typename Type, size_t Size>
-std::ostream& operator<<(std::ostream& os, const Vector<Type>& tab);
+//template<typename Type, size_t Size>
+//std::ostream& operator<<(std::ostream& os, const Vector<Type>& tab);
 
-
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Vector<T>& tab)
+{
+    size_t size = tab.size();
+    if (size == 0)
+    {
+        os << "";
+        return os;
+    }
+    os << "(";
+    for (size_t i = 0; i < size - 1; ++i)
+    {
+        os << tab.pBegin[i] << " ";
+    }
+    os << tab.pBegin[size - 1] << ")";
+    return os;
+}
 
 
 
