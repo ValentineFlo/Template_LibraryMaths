@@ -2,15 +2,15 @@
 #define MY_VECTOR_H
 
 #include <iostream>
-#include "Iterator.h"
+#include "AlgoInclude.h"
 
 template<typename T>
 class Vector
 {
 public:
 
-    using iterator = Iterator<T>;
-    using const_iterator = Iterator<const T>;
+    using iterator = IteratorVecArray<T>;
+    using const_iterator = IteratorVecArray<const T>;
 
     Vector();
     ~Vector();
@@ -35,7 +35,6 @@ public:
 
     T& operator[](int i);
     const T& operator[](int i) const;
-    Vector& operator= (const Vector& tab);
 
     T& at(size_t elem);
     const T& at(size_t elem) const;

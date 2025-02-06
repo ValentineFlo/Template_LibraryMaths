@@ -1,5 +1,5 @@
 #ifndef MY_LIST_H
-#error Do not include this header directly. Please inlude Array.h
+#error Do not include this header directly. Please inlude List.h
 #endif
 
 template<typename T>
@@ -113,6 +113,31 @@ template<typename T>
 const T& List<T>::front() const
 {
     return m_first->value;
+}
+
+template<typename T>
+typename List<T>::iterator List<T>::begin()
+{
+    return iterator(m_first);
+}
+
+template<typename T>
+typename List<T>::iterator List<T>::end()
+{
+    return iterator(m_last - 1);
+}
+
+
+template<typename T>
+typename List<T>::const_iterator List<T>::cbegin() const
+{
+    return const_iterator(m_first);
+}
+
+template<typename T>
+typename List<T>::const_iterator List<T>::cend() const
+{
+    return const_iterator(m_last);
 }
 
 template<typename T>
