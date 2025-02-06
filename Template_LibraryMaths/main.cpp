@@ -66,10 +66,17 @@ int main()
     // Test iterateur
       
       //Iterateur List
-            for (auto it = toto.begin(); it != toto.end(); ++it)
+        /*for (auto it = toto.begin(); it != toto.end(); ++it)
         { 
             std::cout << *it << " ";
+        }*/
+        std::cout << std::endl;
+        for (auto it = toto.end(); it != toto.begin(); --it) 
+        {
+            std::cout << *it << " "; 
         }
+        
+            
       //Iterateur array
         //    for (auto it = arr.begin(); it != arr.end(); ++it)
         //{ 

@@ -24,24 +24,39 @@ private:
     T* ptr;
 };
 
+template <typename T>
+class IteratorList
+{
+public:
+    explicit IteratorList(typename List<T>::Node* node) : m_node(node) {}
 
-//template <typename T>
-//class IteratorList
-//{
-//
-//public:
-//    explicit IteratorList(typename List<T>::Node* p) : ptr(p) {}
-//
-//    T& operator*() { return ptr->m_data ; }
-//    IteratorList& operator++() { ptr = ptr->next; return *this; }
-//    IteratorList operator++(int) { IteratorList tmp = *this; ptr = ptr->next; return tmp; }
-//    IteratorList& operator--() { ptr = ptr->previous; return *this; }
-//    IteratorList operator--(int) { IteratorList tmp = *this; ptr = ptr->previous; return tmp; } 
-//
-//    bool operator==(const IteratorList& other) const { return ptr == other.ptr; }
-//    bool operator!=(const IteratorList& other) const { return ptr != other.ptr; }
-//
-//private:
-//    typename List<T>::Node* ptr; 
-//};
+    T& operator*() const { return m_node->value; }
+    IteratorList& operator++() { m_node = m_node->next; return *this; }
+    IteratorList operator+(size_t n) const
+    {
+        auto curentnode = m_node;
+        for (size_t i = 0; i < n; ++i)
+        {
+            curentnode = curentnode->next;
+        }
+        return iterator(curentnode);
+    }
+    IteratorList operator-(size_t n) const
+    {
+        auto curentnode = m_node;
+        for (size_t i = 0; i < n; ++i)
+        {
+            curentnode = curentnode->previous;
+        }
+        return iterator(curentnode);
+    }
+    IteratorList& operator--() { m_node = m_node->previous; return *this; }
+
+    bool operator==(const IteratorList& other) const { return m_node == other.m_node; }
+    bool operator!=(const IteratorList& other) const { return !(*this == other); }
+
+private:
+    typename List<T>::Node* m_node;
+};
+
 

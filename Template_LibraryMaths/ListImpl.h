@@ -124,7 +124,7 @@ typename List<T>::iterator List<T>::begin()
 template<typename T>
 typename List<T>::iterator List<T>::end()
 {
-    return iterator(m_last - 1);
+    return iterator(m_last);
 }
 
 

@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <string>
+#include "AlgoInclude.h"
 
 template<typename T, size_t N>
 class Array
 {
 public:
-    using iterator = T*;
-    using const_iterator = const T*;
+    using iterator = IteratorVecArray<T>;
+    using const_iterator = IteratorVecArray<T>;
 
     template<typename Type, size_t size>
     friend std::ostream& operator<<(std::ostream& os, const Array<Type, size>& tab);

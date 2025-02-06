@@ -80,24 +80,7 @@ public:
     Node* m_last;
 };
 
-template <typename T>
-class IteratorList
-{
-public:
-    explicit IteratorList(typename List<T>::Node* node) : m_node(node) {}
 
-    T& operator*() const { return m_node->value; }
-    IteratorList& operator++() { m_node = m_node->next; return *this; }
-    IteratorList operator++(int) { IteratorList tmp = *this; ++(*this); return tmp; }
-    IteratorList& operator--() { m_node = m_node->previous; return *this; }
-    IteratorList operator--(int) { IteratorList tmp = *this; --(*this); return tmp; }
-
-    bool operator==(const IteratorList& other) const { return m_node == other.m_node; }
-    bool operator!=(const IteratorList& other) const { return !(*this == other); }
-
-private:
-    typename List<T>::Node* m_node;
-};
 
 #endif
 
