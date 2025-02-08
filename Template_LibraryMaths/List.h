@@ -79,13 +79,35 @@ public:
      * @return the pointer in the last element
      */
     iterator end();
+
+    /**
+     * @brief Iterate to the first element constant
+     * @return the pointer in the first element constant
+     */
     const_iterator cbegin() const;
+
+    /**
+     * @brief Iterate to the last element constant
+     * @return the pointer in the last element constant
+     */
     const_iterator cend() const;
 
-    T& operator[](int i); 
+    /**
+     * @brief operator[] enter a integer
+     */
+    T& operator[](int i);
+    /**
+     * @brief operator[] enter a integer constant
+     */
     const T& operator[](int i) const;
+    /**
+     * @brief operator< constante
+     */
     bool operator<(List& other);
 
+    /**
+     * @brief operator< 
+     */
     void sort();
 
 public:

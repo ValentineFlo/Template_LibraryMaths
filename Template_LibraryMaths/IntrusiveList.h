@@ -1,6 +1,8 @@
+#ifndef MY_INTRUSIVELIST_H
+#define MY_INTRUSIVELIST_H
+
 #include <iostream>
 #include "AlgoInclude.h"
-
 
 template<typename Type>
 struct IntNode
@@ -18,102 +20,36 @@ struct IntNode
 };
 
 template<typename Type>
-struct IntrusiveList
+class IntrusiveList
 {
+public:
+    using iterator = IteratorListIntr<Type>;
+    using const_iterator = IteratorListIntr<const Type>;
+
     IntrusiveList()
         : m_anchor(Type()) 
     {
         m_anchor.prev = m_anchor.next = &m_anchor;
     }
 
-    void push_back(const Type& value)
-    {
-        auto* newNode = new IntNode<Type>(value); 
-        push_back(*newNode);
-    }
+    void push_back(const Type& value);
+    void push_back(IntNode<Type>& node);
+    bool is_empty() const;
+    size_t size() const;
+    void remove(const Type& value);
 
-    void push_back(IntNode<Type>& node)
-    {
-        auto* prevNode = m_anchor.prev;
+    const Type& back() const;
+    const Type& front() const;
+    iterator begin();
+    iterator end();
 
-        node.prev = prevNode;
-        node.next = &m_anchor;
-
-        m_anchor.prev = &node;
-        prevNode->next = &node;
-    }
-
-    bool is_empty() const
-    {
-        return m_anchor.prev == &m_anchor && m_anchor.next == &m_anchor;
-    }
-
-    size_t size() const
-    {
-        auto* currentNode = m_anchor.next;
-        size_t i = 0;
-        while (currentNode != &m_anchor)
-        {
-            ++i;
-            currentNode = currentNode->next;
-        }
-
-        return i;
-    }
-
-    void remove(const Type& value) 
-    {
-        auto* currentNode = m_anchor.next;
-        while (currentNode != &m_anchor) 
-        {
-            if (currentNode->value == value) 
-            {
-                removeimpl(*currentNode);
-                return;
-            }
-            currentNode = currentNode->next;
-        }
-    }
-
-    static void removeimpl(IntNode<Type>& node)
-    {
-        IntNode<Type>* prevNode = node.prev;
-        IntNode<Type>* nextNode = node.next;
-
-        prevNode->next = nextNode;
-        nextNode->prev = prevNode;
-
-        node.prev = node.next = nullptr;
-        delete& node;
-    }
-
+    static void removeimpl(IntNode<Type>& node);
     void sort(); 
 
 
 public:
     IntNode<Type> m_anchor;
 };
-
-template<typename T>
-void IntrusiveList<T>::sort()
-{
-    IntrusiveList<T> values;
-    auto* currentNode = m_anchor.next;
-    while (currentNode != &m_anchor) 
-    {
-        values.push_back(currentNode->value);
-        currentNode = currentNode->next;
-    }
-
-    sortimpl(values.begin(), values.end());
-
-    currentNode = m_anchor.next;
-    for (const auto& value : values) 
-    {
-        currentNode->value = value;
-        currentNode = currentNode->next;
-    }
-}
 
 template<typename Type>
 struct Int : IntNode<Type>
@@ -128,25 +64,44 @@ struct Int : IntNode<Type>
         IntrusiveList::remove(*this);
     }
 };
+
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const IntrusiveList<T>& list) 
+void IntrusiveList<T>::sort()
 {
-    if (list.is_empty()) 
+    size_t size = 0;
+    auto* currentNode = m_anchor.next;
+    while (currentNode != &m_anchor)
     {
-        return os;
+        ++size;
+        currentNode = currentNode->next;
     }
 
-    os << "(";
-    auto* currentNode = list.m_anchor.next; 
-    while (currentNode != &list.m_anchor) 
+    T* values = new T[size];
+    currentNode = m_anchor.next;
+
+    size_t index = 0;
+    while (currentNode != &m_anchor)
     {
-        os << currentNode->value; 
-        currentNode = currentNode->next; 
-        if (currentNode != &list.m_anchor) 
-        {
-            os << " ";
-        }
+        values[index++] = currentNode->value;
+        currentNode = currentNode->next;
     }
-    os << ")";
-    return os;
+
+    sortimpl(values, size);
+
+    currentNode = m_anchor.next;
+    index = 0;
+    while (currentNode != &m_anchor)
+    {
+        currentNode->value = values[index++];
+        currentNode = currentNode->next;
+    }
+
+    delete[] values;
 }
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const IntrusiveList<T>& list);
+
+#endif
+
+#include "IntrusivListImpl.h"

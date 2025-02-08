@@ -3,6 +3,12 @@
 template <typename T>
 class List;
 
+template <typename T>
+class IntrusiveList;
+
+template <typename T>
+struct IntNode;
+
 
 template <typename T>
 class IteratorVecArray
@@ -28,7 +34,7 @@ template <typename T>
 class IteratorList
 {
 public:
-    explicit IteratorList(typename List<T>::Node* node) : m_node(node) {}
+    explicit IteratorList(IntNode<T>* node) : m_node(node) {}
 
     T& operator*() const { return m_node->value; }
     IteratorList& operator++() { m_node = m_node->next; return *this; }
@@ -39,18 +45,18 @@ public:
         {
             curentnode = curentnode->next;
         }
-        return iterator(curentnode);
+        return IteratorList(curentnode);
     }
     IteratorList operator-(size_t n) const
     {
         auto curentnode = m_node;
         for (size_t i = 0; i < n; ++i)
         {
-            curentnode = curentnode->previous;
+            curentnode = curentnode->prev;
         }
-        return iterator(curentnode);
+        return IteratorList(curentnode);
     }
-    IteratorList& operator--() { m_node = m_node->previous; return *this; }
+    IteratorList& operator--() { m_node = m_node->prev; return *this; }
 
     bool operator==(const IteratorList& other) const { return m_node == other.m_node; }
     bool operator!=(const IteratorList& other) const { return !(*this == other); }
@@ -60,3 +66,37 @@ private:
 };
 
 
+template <typename T>
+class IteratorListIntr
+{
+public:
+    explicit IteratorListIntr(IntNode<T>* node) : m_node(node) {} 
+
+    T& operator*() const { return m_node->value; }
+    IteratorListIntr& operator++() { m_node = m_node->next; return *this; }
+    IteratorListIntr operator+(size_t n) const
+    {
+        auto curentnode = m_node;
+        for (size_t i = 0; i < n; ++i)
+        {
+            curentnode = curentnode->next;
+        }
+        return IteratorListIntr(curentnode);
+    }
+    IteratorListIntr operator-(size_t n) const
+    {
+        auto curentnode = m_node;
+        for (size_t i = 0; i < n; ++i)
+        {
+            curentnode = curentnode->prev;
+        }
+        return IteratorListIntr(curentnode);
+    }
+    IteratorListIntr& operator--() { m_node = m_node->prev; return *this; }
+
+    bool operator==(const IteratorListIntr& other) const { return m_node == other.m_node; }
+    bool operator!=(const IteratorListIntr& other) const { return !(*this == other); }
+
+private:
+    IntNode<T>* m_node;
+};
