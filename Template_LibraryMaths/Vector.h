@@ -1,6 +1,13 @@
 #ifndef MY_VECTOR_H
 #define MY_VECTOR_H
 
+
+/**
+ * @file Vector.h
+ * @brief Vector class definition
+ * ***Vector***
+ */
+
 #include <iostream>
 #include "AlgoInclude.h"
 
@@ -39,7 +46,6 @@ public:
     T& at(size_t elem);
     const T& at(size_t elem) const;
     void clear();
-    void resize(size_t newSize, T defaultValue);
     void erase(size_t index);
 
     void sort();

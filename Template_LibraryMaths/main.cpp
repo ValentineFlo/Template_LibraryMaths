@@ -9,11 +9,11 @@
 //int main()
 //{
 //
-// test list
-//    List<size_t> toto;
-//    toto.push_back(12);
-//    toto.push_back(42);
-//    toto.push_back(35);
+// ////test list
+// //   List<size_t> toto;
+// //   toto.push_back(12);
+// //   toto.push_back(42);
+// //   toto.push_back(35);
 //    
 //
 //    //iterateur array
@@ -47,11 +47,13 @@
 //        //std::cout << "Vecteur avant modif : " << vec << std::endl; // (1 2 3)
 //        //std::cout << "apres modif : " << vec << "\n" << " first : " << vec.front()<< "\n" << " last : " << vec.back() << "\n" << " element : " << vec.at(0) << "\n" << std::endl; // (1 2)
 //
-//        //Vector<int> v;
+//        //Vector<float> v;
 //        //v.reserve(3);
 //        //v.push_back(8.02f);
 //        //v.push_back(1.08f);
 //        //v.push_back(4.05f);
+//
+//        //std::cout << v.at(2);
 //
 //    // Test iterateur
 //      

@@ -68,8 +68,9 @@ T& Array<T, N>::at(size_t index)
 {
     if (index > N)
         throw std::out_of_range("Index out of range");
-    return m_data[N];
+    return m_data[index];
 }
+
 
 template<typename T, size_t N>
 const T& Array<T, N>::at(size_t index) const 
@@ -90,9 +91,21 @@ void Array<T, N>::clear()
 template<typename T, size_t N>
 void Array<T, N>::swap(Array& otherArray)
 {
-    for (size_t i = 0; i < size; ++i)
+    T tmp[N];
+
+    for (size_t i = 0; i < N; ++i) 
     {
-        std::swap(m_data[i], otherArray.m_data[i]);
+        tmp[i] = m_data[i];
+    }
+
+    for (size_t i = 0; i < N; ++i) 
+    {
+        m_data[i] = otherArray.m_data[i];
+    }
+
+    for (size_t i = 0; i < N; ++i) 
+    {
+        otherArray.m_data[i] = tmp[i];
     }
 }
 

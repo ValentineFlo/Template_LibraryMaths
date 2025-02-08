@@ -8,7 +8,6 @@
 //	Array<int, 5> arr = { 1, 2, 5, 4, 3 };
 //	Array<int, 5> arrs = { 10, 20, 30, 40, 50};
 //
-//
 //	for (const auto ptr : arr)
 //	{
 //		std::cout << ptr << " ";
@@ -33,24 +32,23 @@
 //
 //	// Insertion Sort
 //
-//	arr.sort();
-//	std::cout << arr << std::endl;
+//	std::cout << arr.at(2) << std::endl;
+//
+//	arrs.swap(arr);
+//	std::cout << arrs << std::endl;
+//
+//	arrs.sort();
+//	std::cout << arrs << std::endl;
 //
 //	// pb ne pas utiliser le swap de la stl
 //	//arr.swap(arrs);
 //	std::cout << arr << std::endl;
 //
+//	std::cout << arr.at(2) << std::endl;
+//
 //	arr.clear();
 //	std::cout << arr << std::endl;
 //	std::cout << std::endl;
 //	std::cout << std::endl;
-//
-//
-//	//Array<float, 14> array = { 1.98f, 32.98f, 34.98f, 5.98f, 34.98f, 6.98f, 39.98f, 78.98f, 93.98f, 13.98f, 17.98f, 4.98f, 3.98f, 2.98f };
-//
-//	//// Fusion sort with float
-//	//array.sort();
-//	//std::cout << array << std::endl;
-//
 //
 //}

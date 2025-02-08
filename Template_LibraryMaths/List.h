@@ -69,7 +69,15 @@ public:
      */
     const T& front() const;
 
+    /**
+     * @brief Iterate to the first element
+     * @return the pointer in the first element
+     */
     iterator begin();
+    /**
+     * @brief Iterate to the last element
+     * @return the pointer in the last element
+     */
     iterator end();
     const_iterator cbegin() const;
     const_iterator cend() const;
