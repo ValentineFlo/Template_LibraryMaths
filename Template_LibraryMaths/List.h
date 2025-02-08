@@ -9,6 +9,7 @@
 #define MY_LIST_H
 
 #include <string>
+#include "AlgoInclude.h"
 
 template <typename T>
 class IteratorList;
@@ -73,6 +74,12 @@ public:
     const_iterator cbegin() const;
     const_iterator cend() const;
 
+    T& operator[](int i); 
+    const T& operator[](int i) const;
+    bool operator<(List& other);
+
+    void sort();
+
 public:
     struct Node;
 
@@ -80,6 +87,9 @@ public:
     Node* m_last;
 };
 
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const List<T>& tab);
 
 
 #endif

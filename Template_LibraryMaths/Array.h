@@ -29,10 +29,13 @@ public:
     const_iterator cbegin() const;
     const_iterator cend() const;
 
+    void clear();
     bool empty();
     T& at(size_t index);
-    T& at(size_t index) const;
+    const T& at(size_t index) const;
     void swap(Array& otherArray);
+    void sort();
+
     inner_type& operator[](const size_t& index);
     const inner_type& operator[](const size_t& index) const;
 

@@ -141,6 +141,30 @@ typename List<T>::const_iterator List<T>::cend() const
 }
 
 template<typename T>
+void List<T>::sort()
+{
+    size_t size = this->size();
+    T* array = new T[size];
+
+    Node* currentNode = m_first;
+    for (size_t i = 0; i < size; ++i)
+    {
+        array[i] = currentNode->value;
+        currentNode = currentNode->next;
+    }
+    sortimpl(array, size);
+
+    currentNode = m_first;
+    for (size_t i = 0; i < size; ++i)
+    {
+        currentNode->value = array[i];
+        currentNode = currentNode->next;
+    }
+    delete[] array;
+}
+
+
+template<typename T>
 size_t List<T>::size() const
 {
     size_t size = 0;
@@ -153,3 +177,74 @@ size_t List<T>::size() const
 
     return size;
 }
+
+template<typename T>
+T& List<T>::operator[](int i) 
+{
+    Node* ptr = m_first;
+
+    for (int index = 0; index < i; ++index)
+    {
+        ptr = ptr->next;
+    }
+    return ptr->value;
+
+}
+
+
+template<typename T>
+const T& List<T>::operator[](int i) const
+{
+    Node* ptr = m_first;
+    
+    for (int index = 0; index < i; ++index)
+    {
+        ptr = ptr->next;
+    }
+    return ptr->value;
+
+}
+
+template<typename T>
+bool List<T>::operator<(List& other)
+{
+    if (this->size() != other.size()) 
+    {
+        return this->size() < other.size();
+    }
+
+    while (m_first != nullptr && other.m_first != nullptr)
+    {
+        if (m_first->value < other.m_first->value)
+        {
+            return true;
+        }
+
+        if (m_first->value > other.m_first->value)
+        {
+            return false;
+        }
+
+        m_first = m_first->next;
+        other.m_first = other.m_first->next;
+    }
+    return false;
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const List<T>& tab)
+{
+    size_t size = tab.size();
+    if (size == 0)
+    {
+        os << "";
+        return os;
+    }
+    for (size_t i = 0; i < size - 1; ++i)
+    {
+        os << tab[i] << " "; 
+    }
+    os << tab[size - 1];
+    return os;
+}
+

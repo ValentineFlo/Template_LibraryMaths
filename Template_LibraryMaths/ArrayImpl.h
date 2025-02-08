@@ -35,25 +35,25 @@ typename Array<T, N>& Array<T, N>::operator= (const Array& tab)
 template<typename T, size_t N>
 typename Array<T, N>::iterator Array<T, N>::begin()
 {
-    return m_data;
+    return IteratorVecArray<T>(m_data); 
 }
 
 template<typename T, size_t N>
 typename Array<T, N>::iterator Array<T,N>::end()
 {
-    return m_data + size;
+    return IteratorVecArray<T>(m_data + size);
 }
 
 template<typename T, size_t N>
 typename Array<T, N>::const_iterator Array<T, N>::cbegin() const
 {
-    return m_data;
+    return IteratorVecArray<T>(m_data); 
 }
 
 template<typename T, size_t N>
 typename Array<T, N>::const_iterator Array<T,N>::cend() const 
 {
-    return m_data + size;
+    return IteratorVecArray<T>(m_data + size); 
 }
 
 
@@ -66,17 +66,23 @@ bool Array<T, N>::empty()
 template<typename T, size_t N>
 T& Array<T, N>::at(size_t index)
 {
-    if (index >= size)
+    if (index > N)
         throw std::out_of_range("Index out of range");
-    return m_data[size];
+    return m_data[N];
 }
 
 template<typename T, size_t N>
-T& Array<T, N>::at(size_t index) const 
+const T& Array<T, N>::at(size_t index) const 
 {
     if (index >= size)
         throw std::out_of_range("Index out of range");
-    return m_data[size];
+    return m_data[index];
+}
+
+template<typename T, size_t N> 
+void Array<T, N>::clear() 
+{
+    std::fill(m_data, m_data + size, T()); 
 }
 
 ///Ameliorer le std::swap
@@ -109,13 +115,18 @@ const typename Array<T, N>::inner_type& Array<T, N>::operator[](const size_t& in
 template<typename Type, size_t Size>
 std::ostream& operator<<(std::ostream& os, const Array<Type, Size>& tab)
 {
-    os << "(";
     for (auto i = 0; i < tab.size - 1; ++i)
     {
         os << tab.m_data[i] << " ";
     }
-    os << tab.m_data[tab.size - 1] << ")";
+    os << tab.m_data[tab.size - 1];
     return os;
+}
+
+template<typename T, size_t N>
+void Array<T, N>::sort()
+{
+    sortimpl(m_data, size); 
 }
 
 template<typename InputIt, typename OutputIt, typename Fn>

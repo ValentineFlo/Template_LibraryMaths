@@ -5,6 +5,7 @@
 #error Do not include this header directly. Please inlude Algorithms.h
 #endif
 
+#include <iostream>
 
 template <typename T>
 void insertionSort(T* begin, size_t size)
